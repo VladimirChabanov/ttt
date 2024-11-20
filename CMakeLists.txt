@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(my_print)
 
+include(GNUInstallDirs)
+
 install(FILES print.h DESTINATION include)
 
 # Generate and install *-targets.cmake 
@@ -15,3 +17,7 @@ file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/my-print-config.cmake"
 "find_dependency(fmt CONFIG REQUIRED)\n"
 "include(\"\${CMAKE_CURRENT_LIST_DIR}/my-print-targets.cmake\")\n"
 )
+
+# Install the generated config file
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/my-print-config.cmake"
+        DESTINATION share/my-print)
